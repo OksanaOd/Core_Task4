@@ -20,6 +20,16 @@ def change_contact(args, contacts):
     else:
         return f"Contact {name} not found."
 
+def show_phone(args, contacts):
+    if len(args) != 1:
+        return "Enter name"
+    name=args[0]
+    if name in contacts:
+        return f" {name}'s phone is {contacts[name]}"
+    else:
+        return f"Contact {name}'s not found."
+ 
+
 def show_all(contacts):
     if not contacts:
         return "No contacts found."
@@ -42,6 +52,8 @@ def main():
             print(add_contact(args, contacts))
         elif command == "change":
             print(change_contact(args, contacts)) 
+        elif command == "phone":
+            print(show_phone(args, contacts))     
         elif command == "all":
             print(show_all(contacts))   
         else:
