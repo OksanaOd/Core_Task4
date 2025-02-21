@@ -1,26 +1,33 @@
-#import pathlib
-import sys 
-from pathlib import Path
-#from  colorama import init, Fore, Style
-import colorama
+import sys
+import pathlib
+from colorama import Fore, Style, init
+
+def show_directory(dir_way, level=0):
+    if not dir_way.is_dir():
+        print(Fore.RED+ f"{dir_way} is not a directory")
+        return
+    for item in dir_way.iterdir():
+        lev= " " * level
+        if item.is_dir():            
+            print(Fore.BLUE+f"{lev}{item.name}/")
+            show_directory(item, level+1)
+        else:
+            print(Fore.GREEN+f"{lev}{item.name}")
 
 def main():
-    if len(sys.argv)<2:
-        user_input =''
-    else:
-        user_input=sys.argv[1]
-    print(user_input)
-    path=Path(user_input)
-    if path.exists():
-        if path.is_dir():
-            items=path.glob('**/*')#glob('*.py')#iterdir()
-            for item in items:
-                print(item)
-        else:
-            print(f'{path.absolute} is noe exists')
-    #path.absolute(user_input)
-    #items=path.glob('**/*')
-    #print(items)
-    
-if __name__ == '__main__':
+    if len(sys.argv) !=2:
+        print(Fore.YELLOW+"Input way to directory")
+        sys.exit(1)
+    dir_way=pathlib.Path(sys.argv[1])
+    if not dir_way.exists():
+        print(Fore.RED+f"{dir_way} is not exist!")
+        sys.exit(1)
+
+    show_directory(dir_way) 
+
+if __name__=="__main__":
     main()
+
+#python "C:\GO IT\python\Core_Task4\Core4_Task_3.py" "C:\GO IT\python\Core_Task4"
+#python "C:\GO IT\python\Core_Task4\Core4_Task_3.py" "C:\GO IT\python\Core_Task3"
+  
