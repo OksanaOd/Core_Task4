@@ -28,6 +28,3 @@ def main():
 if __name__=="__main__":
     main()
 
-#python "C:\GO IT\python\Core_Task4\Core4_Task_3.py" "C:\GO IT\python\Core_Task4"
-#python "C:\GO IT\python\Core_Task4\Core4_Task_3.py" "C:\GO IT\python\Core_Task3"
-  
